@@ -1,6 +1,10 @@
 const mongoose = require('../database');
 
-const ModeloSchema = new mongoose.Schema ({
+const CarSchema = new mongoose.Schema ({
+    marca:{
+        type: String,
+        require: true,
+    },
     name:{
         type: String,
         require: true,
@@ -31,6 +35,6 @@ const ModeloSchema = new mongoose.Schema ({
     },
 });
 
-const Modelo = mongoose.model('Modelo', ModeloSchema);
+const Car = mongoose.model('Car', CarSchema);
 
-module.exports = Modelo;
+module.exports = Car;

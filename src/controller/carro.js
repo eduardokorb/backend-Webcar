@@ -1,10 +1,10 @@
 const express = require("express");
 
-const Modelo = require("../models/modelo");
+const Modelo = require("../models/car");
 
 const router = express.Router();
 
-router.post("/registro", async (req, res) => {
+router.post("/carros", async (req, res) => {
   try {
     const carro = await Modelo.create(req.body);
 
@@ -14,7 +14,7 @@ router.post("/registro", async (req, res) => {
   }
 });
 
-router.get("/registro", async (req, res) => {
+router.get("/carros", async (req, res) => {
   try {
   const carro = await Modelo.find();
 
@@ -24,15 +24,26 @@ router.get("/registro", async (req, res) => {
   }  
 });
 
-router.delete("/registro/:id", async(req, res) => {
+router.delete("/carros/:id", async(req, res) => {
   try{
   const carro = await Modelo.findById(req.params.id);
   await carro.remove();
   return res.send();
-  }catch (err){
+  
+
+}catch (err){
     return res.status(400).send({message: 'Não foi possível deletar!'});
   }
 });
 
+router.put("/carros/:id", async (req, res) => {
+  try {
+    const carro = await Modelo.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
-module.exports = (app) => app.use("/auten", router);
+    res.status(200).send({ carro });
+  } catch (err) {
+    return res.status(400).send({ message: 'Erro ao fazer update!' });
+  }
+});
+
+module.exports = (app) => app.use("/carro", router);

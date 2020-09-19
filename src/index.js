@@ -6,6 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-require('./controle/carro')(app);
+require('./controller/carro')(app);
+require('./controller/marca')(app);
 
 app.listen(3000);
