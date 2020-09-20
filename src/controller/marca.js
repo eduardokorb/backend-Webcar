@@ -46,4 +46,4 @@ router.put("/marcas/:id", async (req, res) => {
   }
 });
 
-module.exports = (app) => app.use("/marca", router);
+module.exports = (app) => app.use("/api", router);

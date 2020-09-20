@@ -18,7 +18,7 @@ router.get("/carros", async (req, res) => {
   try {
   const carro = await Modelo.find();
 
-  return res.json(carro);
+  return res.json({ carro });
   } catch (err) {
     return res.status(400).send({message: 'Não localizado!'});
   }  
@@ -46,4 +46,4 @@ router.put("/carros/:id", async (req, res) => {
   }
 });
 
-module.exports = (app) => app.use("/carro", router);
+module.exports = (app) => app.use("/api", router);
